@@ -4,12 +4,12 @@ const randomNumber = (min, max) => {
     return min + (Math.floor(Math.random() * (max - min)))
 }
 
-bodyElt.addEventListener('mousedown', (e) => {
-    console.log(e)
+setInterval(() => {
     let rond = document.createElement('div')
     rond.style.backgroundColor = `rgb(${randomNumber(0, 256)}, ${randomNumber(0,256)}, ${randomNumber(0, 256)})`
-    rond.style.top = (e.y - 25) + 'px'
-    rond.style.left = (e.x - 25) + 'px'
+    rond.style.top = (randomNumber(0, window.innerHeight + 1) - 25) + 'px'
+    rond.style.left = (randomNumber(0, window.innerWidth + 1) - 25) + 'px'
     bodyElt.appendChild(rond)
-    isDrawing = true
-})
+
+}, 10)
+
