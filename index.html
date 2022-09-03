@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,15 +8,22 @@
     <title>CDA-062022-Cours JS</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    
-    <label for="taille">Taille</label>
-    <input type="text" id="taille" name="taille">
-    <label for="poids">Poids</label>
-    <input type="number" id="poids" name="poids">
-    <button>Calcul IMC</button>
 
-    <div></div>
+<body>
+    <div id="imc" class="container">
+        <label for="taille">Taille (en mètre)</label>
+        <input type="number" id="taille" name="taille">
+        <label for="poids">Poids (en kg)</label>
+        <input type="number" id="poids" name="poids">
+        <button>Calcul IMC</button>
+
+        <div><p id="dernier-imc"></p></div>
+    </div>
+
+    <div id="historique" class="container"></div>
+
 </body>
+
 <script src="app.js"></script>
+
 </html>
