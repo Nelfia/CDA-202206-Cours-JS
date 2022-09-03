@@ -1,15 +1,31 @@
-const bodyElt = document.querySelector('body')
+const bouton = document.querySelector('button')
+const tailleInput = document.getElementById('taille')
+const poidsInput = document.getElementById('poids')
+const div = document.querySelector('div')
+let tab = []
 
-const randomNumber = (min, max) => {
-    return min + (Math.floor(Math.random() * (max - min)))
+
+const recupererDate = () => {
+    let now = new Date()
+    let jour = now.getDay()
+    let mois = now.getMonth()
+    let annee = now.getFullYear()
+    return `${jour < 10 ? '0' + jour : jour}/${mois < 10 ? '0' + mois : mois}/${annee}`
 }
 
-setInterval(() => {
-    let rond = document.createElement('div')
-    rond.style.backgroundColor = `rgb(${randomNumber(0, 256)}, ${randomNumber(0,256)}, ${randomNumber(0, 256)})`
-    rond.style.top = (randomNumber(0, window.innerHeight + 1) - 25) + 'px'
-    rond.style.left = (randomNumber(0, window.innerWidth + 1) - 25) + 'px'
-    bodyElt.appendChild(rond)
+bouton.onclick = () => {
+    if ((tailleInput.value != 0) && (poidsInput.value != 0)) {
+        let personne = {
+            taille: tailleInput.value,
+            poids: poidsInput.value,
+            imc: poidsInput.value / (tailleInput.value ** 2),
+            date: recupererDate()
+        }
+        let retour = `le ${personne.date}: avec une taille de ${personne.taille}m et un poids de ${personne.poids}kg, votre IMC est de ${personne.imc}</br>`
+        div.innerHTML += retour
+        console.log(personne)
+        tab += personne
+    }
+}
 
-}, 10)
-
+console.log(localStorage)
