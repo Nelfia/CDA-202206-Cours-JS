@@ -7,10 +7,10 @@ const olElt = document.querySelector('ol')
 let taches = []
 
 // Récupération et affichage des tâches déjà enregistrées
-if(localStorage.taches) {
+if (localStorage.taches) {
     let tachesLocalStorage = JSON.parse(localStorage.taches)
-    if(tachesLocalStorage.length > 0) {
-        tachesLocalStorage.forEach( tache => {
+    if (tachesLocalStorage.length > 0) {
+        tachesLocalStorage.forEach(tache => {
             taches.push(tache)
         })
         taches.forEach(tache => {
@@ -57,3 +57,20 @@ inputElt.addEventListener('keydown', (e) => {
         inputElt.value = ''
     }
 })
+
+// =================== ALLER PLUS LOIN ==================
+const checkboxes = document.querySelectorAll('.checkbox')
+
+checkboxes.forEach(checkbox => {
+    checkbox.onclick = (e) => {
+        console.log(e)
+        if (checkbox.checked) {
+            checkbox.parentNode.classList.add('checked')
+            console.log('checkée')
+        } else {
+            checkbox.parentNode.classList.remove('checked')
+        }
+
+    }
+})
+console.log(checkboxes)

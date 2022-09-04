@@ -95,3 +95,8 @@ body{
     width: 335px;
     padding: 5px 10px;
 }
+
+.checked {
+    text-decoration: line-through;
+    color: #5e389c6e;
+}
