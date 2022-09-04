@@ -4,60 +4,93 @@
 }
 
 body{
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
+    margin-top: 2em;
     display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
-}
-
-#imc{
-    padding-top: 20px;
+    justify-content: flex-start;
+    gap: 1em;
 }
 
 .container {
-    width: fit-content;
+    width: 355px;
     height: fit-content;
-    background-color: #845EC2;
+    padding: 15px;
+    background-color: #5e389c;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: flex-start;
     align-items: center;
     gap: 10px;
     border-radius: 5px;
     border: 1px solid #808080c4;
-    box-shadow: -2px 2px 14px #808080a6;
+    box-shadow: -2px 2px 14px #5e389cb0;;
+}
+
+#ajouter-tache {
+    background-color: aliceblue;
+    justify-content: center;
+    align-items: center;
+    border: none;
+}
+
+.container .input-tache{
+    display: flex;
+    flex-direction: column;
 }
 
 .container input {
     border-radius: 5px;
     border: 1px solid #808080c4;
     box-shadow: -2px 2px 14px #808080a6;
+    padding: 5px 10px;
+    background-color: #5e389c;
+    color: aliceblue;
 }
 
 .container label{
-    color: #f1f1f1;
+    color: #5e389c;
 }
 
 .container button {
     padding: 5px;
-    margin-top: 20px;
-    width: 200px;
-    border-radius: 6px;
+    margin-top: 26px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
     border: 1px solid gray;
     cursor: pointer;
+    background-color: #5e389c;
     box-shadow: -2px 2px 14px #808080a6;
+    color: aliceblue;
 }
 
 .container p {
     padding-left: 15px;
     padding-right: 15px;
     width: 300px;
-    background-color: whitesmoke;
+    background-color: aliceblue;
     border-radius: 5px;
     margin: 10px;
     box-shadow: -2px 2px 14px #808080a6;
 }
 
+.container ol {
+    list-style-type: none;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    padding-inline-start: 0;
+    gap: 3px;
+}
+
+.container li {
+    background-color: aliceblue;
+    border-radius: 3px;
+    width: 335px;
+    padding: 5px 10px;
+}

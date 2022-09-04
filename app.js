@@ -1,33 +1,38 @@
-const bouton = document.querySelector('button')
-const tailleInput = document.getElementById('taille')
-const poidsInput = document.getElementById('poids')
-const dernierImcElt = document.querySelector('#dernier-imc')
-const historiqueElt = document.querySelector('#historique')
-let tab = []
+// VARIABLES ----> ELEMENTS
+const bodyElt = document.querySelector('body')
+const inputElt = document.querySelector('#nouvelle-tache')
+const buttonElt = document.querySelector('button')
+const olElt = document.querySelector('ol')
 
+let taches = []
 
-const recupererDate = () => {
-    let now = new Date()
-    let jour = now.getDay()
-    let mois = now.getMonth()
-    let annee = now.getFullYear()
-    return `${jour}/${mois}/${annee}`
-}
-
-bouton.onclick = () => {
-    if ((tailleInput.value != 0) && (poidsInput.value != 0)) {
-        let personne = {
-            taille: tailleInput.value,
-            poids: poidsInput.value,
-            imc: poidsInput.value / (tailleInput.value ** 2),
-            date: recupererDate()
-        }
-        let retour = `${personne.date} - avec une taille de ${personne.taille}m et un poids de ${personne.poids}kg, votre IMC est de ${personne.imc}</br>`
-        historiqueElt.innerHTML+= `<p> ${retour} </p>`
-        dernierImcElt.innerHTML = retour
-        console.log(personne)
-        tab += personne
+const ajouterTache = (str) => {
+    if(str) {
+        let nouvelleTache = str
+        taches.push(nouvelleTache)
+        localStorage.setItem('taches', JSON.stringify(taches))
+        console.log(localStorage) 
     }
+    olElt.innerHTML = ""
+    localStorage.getItem('taches', JSON.parse(localStorage.taches))
+    taches.forEach(tache => {
+        let li = document.createElement('li')
+        let box = document.createElement('input')
+        box.type = 'checkbox'
+        box.classList.add('checkbox')
+        li.appendChild(box)
+        li.innerHTML+= `  ${tache}`
+        olElt.appendChild(li)
+    })
 }
 
-console.log(localStorage)
+buttonElt.addEventListener('click', () => {
+    ajouterTache(inputElt.value)
+    inputElt.value = ''
+})
+inputElt.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+        ajouterTache(inputElt.value)
+        inputElt.value = ''
+    }
+})
