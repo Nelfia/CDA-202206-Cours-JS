@@ -6,71 +6,112 @@ const olElt = document.querySelector('ol')
 
 let taches = []
 
-// Récupération et affichage des tâches déjà enregistrées
-if (localStorage.taches) {
-    let tachesLocalStorage = JSON.parse(localStorage.taches)
-    if (tachesLocalStorage.length > 0) {
-        tachesLocalStorage.forEach(tache => {
-            taches.push(tache)
-        })
+// FONCTIONS --------------------------------------------
+
+// Importer les taches enregistrées dans le localStorage
+const importerLS = () => {
+    if (localStorage.taches) {
+        taches = JSON.parse(localStorage.taches)
+        console.log(taches)
+    }
+}
+
+// Exporter le tableau des taches vers le localStorage
+const exporterLS = () => {
+    localStorage.setItem('taches', JSON.stringify(taches))
+}
+
+// Afficher la liste des taches sur la page
+const afficherTaches = () => {
+    if (taches.length > 0) {
         taches.forEach(tache => {
             let li = document.createElement('li')
-            let box = document.createElement('input')
-            box.type = 'checkbox'
-            box.classList.add('checkbox')
-            li.appendChild(box)
-            li.innerHTML += `  ${tache}`
+            li.classList.add('taches')
+
+            let checkbox = document.createElement('input')
+            checkbox.type = 'checkbox'
+            checkbox.classList.add('checkbox')
+
+            let text = document.createElement('p')
+            text.innerHTML = `${tache}`
+
+            let corbeille = document.createElement('div')
+            let imgCorbeille = document.createElement('img')
+            imgCorbeille.classList.add('corbeille')
+            imgCorbeille.src = `./img/corbeille-fermee.png`
+            imgCorbeille.alt = `image d'une corbeille fermée`
+
+            corbeille.appendChild(imgCorbeille)
+            li.appendChild(checkbox)
+            li.appendChild(text)
+            li.appendChild(corbeille)
             olElt.appendChild(li)
         })
-    }
-}
-
-// Fonction pour ajouter une nouvelle tâche
-const ajouterTache = (str) => {
-    if (str) {
-        let nouvelleTache = str
-        taches.push(nouvelleTache)
-        localStorage.setItem('taches', JSON.stringify(taches))
-    }
-    olElt.innerHTML = ""
-    taches.forEach(tache => {
+    } else {
         let li = document.createElement('li')
-        let box = document.createElement('input')
-        box.type = 'checkbox'
-        box.classList.add('checkbox')
-        li.appendChild(box)
-        li.innerHTML += `  ${tache}`
+        li.innerHTML = `Il n'y a aucune tâche, BRAVO !`
+        li.style.color = `aliceblue`
         olElt.appendChild(li)
-    })
+    }
 }
 
-// Action au click sur le bouton
-buttonElt.addEventListener('click', () => {
-    ajouterTache(inputElt.value)
-    inputElt.value = ''
-})
+// Mettre à jour la liste des tâches ds le localStorage & sur la Page
+const majTaches = () => {
+    exporterLS()
+    olElt.innerHTML = ''
+    importerLS()
+    afficherTaches()
+}
 
-// Action lorsque touche Enter appuyée dans l'input
-inputElt.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') {
-        ajouterTache(inputElt.value)
+// Ajouter une nouvelle tache et maj LS et Page
+const ajouterTache = () => {
+    if((inputElt.value) && (inputElt.value != '')) {
+        taches.push(`${inputElt.value}`)
+    } else {
+        console.log('Il n\'y a rien à rajouter')
+    }
+    majTaches()
+}
+
+
+// DEBUT DU PROGRAMME =================================
+
+// A l'arrivée sur la page => affichage, s'il y en a des taches du localStorage 
+importerLS()
+afficherTaches()
+
+// Ajout d'une nouvelle tache au click sur le bouton "+"
+buttonElt.onclick = () => {
+    ajouterTache()
+}
+// Ajout d'une nouvelle tache lorsque la touche entrée est appuyée ds l'input
+inputElt.onkeydown = (e) => {
+    if(e.key == 'Enter') {
+        ajouterTache()
         inputElt.value = ''
     }
-})
+}
 
-// =================== ALLER PLUS LOIN ==================
+
 const checkboxes = document.querySelectorAll('.checkbox')
-
+// Action au click sur la checkbox
 checkboxes.forEach(checkbox => {
     checkbox.onclick = (e) => {
         console.log(e)
         if (checkbox.checked) {
+            console.log(checkbox.checked)
             checkbox.parentNode.classList.add('checked')
-            console.log('checkée')
         } else {
             checkbox.parentNode.classList.remove('checked')
         }
-
     }
 })
-console.log(checkboxes)
+
+// Action au click sur la corbeille
+const corbeilles = document.querySelectorAll('.corbeille')
+corbeilles.forEach( corbeille => {
+    corbeille.onclick = (e) => {
+        confirm('Etes-vous certain de vouloir supprimer cette tâche ?')
+        console.log(e)
+    }
+})

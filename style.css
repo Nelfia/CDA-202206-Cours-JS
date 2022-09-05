@@ -30,17 +30,18 @@ body{
     box-shadow: -2px 2px 14px #5e389cb0;;
 }
 
-#ajouter-tache {
+.container .input-tache{
+    display: flex;
+    flex-direction: column;
+}
+
+#nouvelle-tache-container {
     background-color: aliceblue;
     justify-content: center;
     align-items: center;
     border: none;
 }
 
-.container .input-tache{
-    display: flex;
-    flex-direction: column;
-}
 
 .container input {
     border-radius: 5px;
@@ -72,10 +73,8 @@ body{
     padding-left: 15px;
     padding-right: 15px;
     width: 300px;
-    background-color: aliceblue;
     border-radius: 5px;
     margin: 10px;
-    box-shadow: -2px 2px 14px #808080a6;
 }
 
 .container ol {
@@ -89,11 +88,24 @@ body{
     gap: 3px;
 }
 
-.container li {
+.taches {
     background-color: aliceblue;
     border-radius: 3px;
     width: 335px;
     padding: 5px 10px;
+    display: flex;
+}
+
+.taches div {
+    width: 8vw;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.taches img {
+    width: 100%;
 }
 
 .checked {
