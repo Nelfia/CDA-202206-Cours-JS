@@ -26,26 +26,24 @@ const afficherTaches = () => {
     if (taches.length > 0) {
         taches.forEach(tache => {
             let li = document.createElement('li')
-            li.classList.add('taches')
-
+            
             let checkbox = document.createElement('input')
             checkbox.type = 'checkbox'
             checkbox.classList.add('checkbox')
-
-            let text = document.createElement('p')
-            text.innerHTML = `${tache}`
-
+            
             let corbeille = document.createElement('div')
+            
             let imgCorbeille = document.createElement('img')
             imgCorbeille.classList.add('corbeille')
             imgCorbeille.src = `./img/corbeille-fermee.png`
             imgCorbeille.alt = `image d'une corbeille fermée`
-
-            corbeille.appendChild(imgCorbeille)
+            
             li.appendChild(checkbox)
-            li.appendChild(text)
+            li.innerHTML += `${tache}`
+            corbeille.appendChild(imgCorbeille)
             li.appendChild(corbeille)
             olElt.appendChild(li)
+
         })
     } else {
         let li = document.createElement('li')
@@ -66,9 +64,11 @@ const majTaches = () => {
 // Ajouter une nouvelle tache et maj LS et Page
 const ajouterTache = () => {
     if((inputElt.value) && (inputElt.value != '')) {
-        taches.push(`${inputElt.value}`)
+        let index = taches.push(`${inputElt.value}`)
+        index-= 1
+        console.log(`Index : ` + index)
     } else {
-        console.log('Il n\'y a rien à rajouter')
+        console.error('Il n\'y a rien à rajouter')
     }
     majTaches()
 }
