@@ -1,3 +1,82 @@
 *{
- margin = 10px; 
+    font-size: 1.2em;
+    color: whitesmoke;
+    text-shadow: 1px 1px 5px black;
+}
+
+body {
+    width: 99vw;
+    height: 95vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#carroussel-container{
+    display: flex;
+    align-items: center;
+    width: 68vw;
+    height: 60vh;
+    overflow: hidden;
+    position: relative;
+    margin: 1em;
+}
+
+#articles-container {
+    width: fit-content;
+    height: 60vh;
+    display: flex;
+    position: absolute;
+    transition: 0.3s;
+}
+
+button {
+    width: 50px;
+    height: 50px;
+    background-color: grey;
+    border: none;
+    border-radius: 50%;
+    text-align: center;
+    justify-content: center;
+}
+
+article {
+    width: 68vw;
+    height: 60vh;
+    background-repeat: repeat;
+    background-size: cover;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 1px 1px 5px grey;
+}
+
+article h2 {
+    margin: 1em;
+}
+
+article p {
+    font-size: 0.8em;
+    margin: 2em;
+}
+
+#slides {
+    top: 74vh;
+    width: 50vw;
+    height: 3vh;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    gap: 2vw;
+    align-items: center;
+}
+
+#slides div {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: white;
+    box-shadow: 1px 1px 1px black;
+    opacity: 0.7;
 }
