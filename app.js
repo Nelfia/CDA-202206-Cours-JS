@@ -2,6 +2,12 @@ const compagnieContainer = document.querySelector('.compagnie-container')
 
 class Guerrier {
     constructor(nom, arme = 'épée', armure = 5, degats = 10, img) {
+        if (typeof nom !== 'string') throw "Nom => mauvais type"
+        if (typeof arme !== 'string') throw "Arme => mauvais type"
+        if (typeof armure !== 'number') throw "Armure => mauvais type"
+        if (typeof degats !== 'number') throw "Degats => mauvais type"
+        if (typeof img !== 'string') throw "Img => mauvais type"
+
         this.type = this.constructor.name
         this.nom = nom
         this.arme = arme
@@ -18,11 +24,18 @@ class Guerrier {
     isDead = () => this.pv <= 0
 
     attaquer = (cible) => {
-        console.log(`le ${this.type} ${this.nom} combat le ${cible.type} ${cible.nom} `)
-        cible.pv-= this.degats - cible.armure
+        if (!(cible instanceof Guerrier)) throw "cible => mauvais type"
+
+        if(this.degats > cible.armure) cible.pv-= this.degats - cible.armure
+
+        console.log(`⚔ Attaque de ${this.nom} sur ${cible.nom} ==> perte de ${this.degats > cible.armure ? this.degats - cible.armure : 0} PVs.\n Il reste ${cible.pv} PVs à ${cible.nom}`)
+        
     }
 
     static combat = (guerrier1, guerrier2) => {
+        if (!guerrier1 instanceof Guerrier) throw "guerrier1 => mauvais type"
+        if (!guerrier2 instanceof Guerrier) throw "guerrier2 => mauvais type"
+
         while ((!guerrier1.isDead()) && (!guerrier2.isDead())) {
 
             guerrier1.attaquer(guerrier2)
@@ -38,26 +51,38 @@ class Guerrier {
 
 class Chevalier extends Guerrier {
     constructor(nom, img) {
+        if (typeof nom !== 'string') throw "Nom => mauvais type"
+        if (typeof img !== 'string') throw "Img => mauvais type"
+
         super(nom, 'Espadon', 10 , 12, img)
     }
 }
 
 class Samourai extends Guerrier {
     constructor(nom, img) {
+        if (typeof nom !== 'string') throw "Nom => mauvais type"
+        if (typeof img !== 'string') throw "Img => mauvais type"
+
         super(nom, 'Katana', 5, 20, img)
     }
 }
 
 class Viking extends Guerrier {
     constructor(nom, img) {
+        if (typeof nom !== 'string') throw "Nom => mauvais type"
+        if (typeof img !== 'string') throw "Img => mauvais type"
+
         super(nom, 'Hache', 7 , 14, img)
     }
 }
 
 class Compagnie {
-    constructor(nom) {
+    constructor(nom, guerriers = []) {
+        if (typeof nom !== 'string') throw "Nom => mauvais type"
+        if (!Array.isArray(guerriers)) throw "Guerriers => mauvais type"
+
         this.nom = nom
-        this.guerriers = []
+        this.guerriers = guerriers
         this.nombreDeGuerriers = 0  
     }
 
@@ -91,10 +116,13 @@ class Compagnie {
     }
 
     guerrierAppartient = (guerrier) => {
+        if (!(guerrier instanceof Guerrier)) throw "Guerrier => mauvais type"
         return this.guerriers.includes(guerrier)
     }
 
     ajouterGuerrier = (guerrier) => {
+        if (!(guerrier instanceof Guerrier)) throw "Guerrier => mauvais type"
+        
         if (!this.guerrierAppartient(guerrier)) {
             this.guerriers.push(guerrier)
             this.nombreDeGuerriers++
@@ -103,6 +131,8 @@ class Compagnie {
     }
 
     supprimerGuerrier = (guerrier) => {
+        if (!(guerrier instanceof Guerrier)) throw "Guerrier => mauvais type"
+
         if (this.guerrierAppartient(guerrier)) {
             let index = this.guerriers.indexOf(guerrier)
             this.guerriers.splice(index, 1)
@@ -111,6 +141,11 @@ class Compagnie {
     }
 
     static bataille = (compagnie1, compagnie2) => {
+        if (!(compagnie1 instanceof Compagnie)) throw "compagnie1 => mauvais type"
+        if (!(compagnie2 instanceof Compagnie)) throw "compagnie2 => mauvais type"
+
+
+
         let currentGuerrier1 = compagnie1.guerriers[0]
         let currentGuerrier2 = compagnie2.guerriers[0]
         let compagniePerdante
