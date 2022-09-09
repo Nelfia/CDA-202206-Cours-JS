@@ -1,3 +1,17 @@
-*{
- margin = 10px; 
+* {
+    font-size: 1.5rem;
+}
+
+
+#pageProgress {
+    position: fixed;
+    top: 945px;
+    width: 98%;
+    background-color: #c0bcbc;
+}
+
+#barProgress {
+    width: 1%;
+    height: 30px;
+    background-color: coral;
 }
