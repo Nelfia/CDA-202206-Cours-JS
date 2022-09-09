@@ -5,7 +5,7 @@
 
 #pageProgress {
     position: fixed;
-    top: 945px;
+    bottom: 0px;
     width: 98%;
     background-color: #c0bcbc;
 }
