@@ -5,9 +5,55 @@
 }
 
 body {
-    width: 99vw;
-    height: 95vh;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.bataille-container {
+    width: 95vw;
+    height: 90vh;
+    padding: 1em;
+    display: flex;
+    flex-direction: row;
+}
+
+.compagnie-container {
+    display: flex;
+    gap: 15px;
+}
+
+.compagnie {
+    width: 50%;
+    height: 100%;
+    padding: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 40px;
+    border: 4px solid gold;
+    box-shadow: -6px 7px 10px lightgrey;
+    align-content: center;
+}
+
+.compagnie h2 {
+    position: absolute;
+    top: 15px;
+    color: #3545a1;
+    text-shadow: 1px 1px 1px #a6a6dd;
+}
+
+.guerrier {
+    width: 200px;
+    height: 200px;
+    display: flex;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: flex-end;
+    box-shadow: -1px 3px 8px #adadad;
+}
+
+.guerrier h3 {
+    align-self: end;
+    justify-self: center;
 }
