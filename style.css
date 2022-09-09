@@ -3,14 +3,14 @@
 }
 
 
-#pageProgress {
+#page-progress {
     position: fixed;
     bottom: 0px;
     width: 98%;
     background-color: #c0bcbc;
 }
 
-#barProgress {
+#bar-progress {
     width: 1%;
     height: 30px;
     background-color: coral;
