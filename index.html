@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <title>MAKE ME LOF'</title>
+</head>
+
+<body>
+    <div class="search-container container">
+        <h2>WHAT WILL MAKE U LOF' ?</h2>
+        <form action="" method="get">
+
+            <!-- Select category/categories -->
+            <ul class="categories">
+                <label for="categorie">Category(ies)</label>
+                <li><input type="radio" name="categorie" id="any" />Any</li>
+                <li>
+                    <div>
+                        <input type="radio" name="categorie" id="custom" />Custom :
+                        <ul class="custom-choice">
+                            <li><input type="checkbox" name="categorie" id="programming">Programming</li>
+                            <li><input type="checkbox" name="categorie" id="misc">Misc</li>
+                            <li><input type="checkbox" name="categorie" id="dark">Dark</li>
+                            <li><input type="checkbox" name="categorie" id="pun">Pun</li>
+                            <li><input type="checkbox" name="categorie" id="spooky">Spooky</li>
+                            <li><input type="checkbox" name="categorie" id="christmas">Christmas</li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+
+            <div class="languages"></div>
+            <div class="blacklists"></div>
+            <div class="languages"></div>
+            <div class="languages"></div>
+            <div class="languages"></div>
+            <div class="languages"></div>
+            <div class="languages"></div>
+            
+
+
+
+        </form>
+    </div>
+    <div class="result-container container"></div>
+</body>
+
+<script src="app.js"></script>
+
+</html>
