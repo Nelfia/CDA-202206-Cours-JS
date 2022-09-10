@@ -9,8 +9,12 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
-ul {
-    list-style-type: none;
+h2 {
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 2px;
+    font-size: 2rem;
+    text-align: center;
+    text-shadow: 1px 1px 5px black;
 }
 
 label {
@@ -19,40 +23,34 @@ label {
     align-self: center;
 }
 
-.container {
-    width: 80vw;
-    height: 45vh;
+#page-container {
+    width: 85vw;
+    height: 90vh;
     box-shadow: 0px 0px 15px lightgrey;
     border-radius: 10px;
     padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
-.container h2 {
-    font-family: 'Montserrat', sans-serif;
-    letter-spacing: 2px;
-    font-size: 2rem;
-    text-align: center;
-    text-shadow: 1px 1px 5px black;
-}
-
-.search-container form{
+form{
     padding: 1em;
+    width: 80vw;
+    height: fit-content;
 }
 
-.categories {
+#categories-choices {
     display: flex;
-    width: 20vw;
-    flex-direction: column;
-    align-content: center;
-    align-items: flex-start;
-    padding-left: 0;
-    gap: 4px;
-}
-
-.custom-choice {
-    display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: wrap;
-    padding-left: 1em;
-    gap: 2px;
+    justify-content: space-evenly;
+    gap: 5px;
 }
+
+.categorie {
+    border: 2px solid grey;
+    border-radius: 10px;
+    padding: 3px;
+}
+
