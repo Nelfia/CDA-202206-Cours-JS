@@ -23,77 +23,108 @@
 
             <!-- Select category/categories -->
             <div id="categories-container">
-                <label for="categorie">Category(ies)</label>
-                <input type="radio" name="categorie" id="any" value="Any"/>Any
-                <input type="radio" name="categorie" id="custom" value="Custom"/>Custom
+                <h3>Category(ies)</h3>
+
+                <div id="radio-categories">
+                    <div>
+                        <input type="radio" name="categorie" id="any" value="Any" checked />
+                        <label for="any" class="radio-categorie">Any</label>
+                    </div>
+
+                    <div>
+                        <input type="radio" name="categorie" id="custom" value="Custom" />
+                        <label for="custom" class="radio-categorie">Custom</label>
+                    </div>
+                </div>
 
                 <div id="categories-choices">
                     <input type="checkbox" id="programming" value="Programming" />
-                    <label for="programming" class="categorie">Programming</label> 
+                    <label for="programming" class="categorie">Programming</label>
+
                     <input type="checkbox" id="misc" value="Misc" />
-                    <label for="misc" class="categorie">Misc</label> 
+                    <label for="misc" class="categorie">Misc</label>
+
                     <input type="checkbox" id="dark" value="Dark" />
-                    <label for="dark" class="categorie">Dark</label> 
+                    <label for="dark" class="categorie">Dark</label>
+
                     <input type="checkbox" id="pun" value="Pun" />
-                    <label for="pun" class="categorie">Pun</label> 
+                    <label for="pun" class="categorie">Pun</label>
+
                     <input type="checkbox" id="spooky" value="Spooky" />
-                    <label for="spooky" class="categorie">Spooky</label> 
+                    <label for="spooky" class="categorie">Spooky</label>
+
                     <input type="checkbox" id="christmas" value="Christmas" />
-                    <label for="christmas" class="categorie">Christmas</label> 
+                    <label for="christmas" class="categorie">Christmas</label>
                 </div>
             </div>
 
-            <div id="custom-choice">
-                <!-- Select language -->
-                <div id="languages-container">
-                    <label for="language">Language</label>
-                    <input list="languages-list" id="language" name="language" />
-                    <datalist id="languages-list">
-                        <option value="cs">Czech</option>
-                        <option value="de">German</option>
-                        <option value="en">English</option>
-                        <option value="fr">French</option>
-                        <option value="es">Spanish</option>
-                        <option value="pt">Portuguese</option>
-                    </datalist>
-                </div>
-
-                <!-- Select flags of blacklists -->
-                <div id="blacklists">
-                    <label for="flags">Not fun jokes</label>
-                    <input type="checkbox" id="nfsw" class="flag" />nfsw
-                    <input type="checkbox" id="religious" class="flag" />religious
-                    <input type="checkbox" id="political" class="flag" />political
-                    <input type="checkbox" id="racist" class="flag" />racist
-                    <input type="checkbox" id="sexist" class="flag" />sexist
-                    <input type="checkbox" id="explicit" class="flag" />explicit
-                </div>
-
-                <!-- Single or Twopart jokes -->
-                <div id="joke-type">
-                    <label for="joke-type">Type of joke(s)</label>
-                    <input type="checkbox" id="single" class="joke-type" name="joke-type" />Single part
-                    <input type="checkbox" id="twopart" class="joke-type" name="joke-type" />Two parts
-                </div>
-
-                <!-- Search with string -->
-                <div id="search-with-string">
-                    <label for="string-search-area">Search joke(s) with words</label>
-                    <input type="search" id="search-by-string" name="string-search-area" />
-                </div>
-
-                <!-- Search with id -->
-                <div id="search-with-id">
-                    <label for="string-search-area">Search joke(s) with ID</label>
-                    <input type="number" id="search-by-id" name="string-search-area" />
-                </div>
-
-                <!-- Amount of jokes -->
-                <div id="amount-of-jokes">
-                    <label for="amount-of-jokes">Amount of joke(s)</label>
-                    <input type="number" id="amount-of-jokes-area" name="amount-of-jokes">
-                </div>
+            <!-- Select language -->
+            <div id="languages-container">
+                <h3>Language</h3>
+                <input list="languages-list" id="language" name="language" />
+                <datalist id="languages-list">
+                    <option value="cs">Czech</option>
+                    <option value="de">German</option>
+                    <option value="en">English</option>
+                    <option value="fr">French</option>
+                    <option value="es">Spanish</option>
+                    <option value="pt">Portuguese</option>
+                </datalist>
             </div>
+
+            <!-- Select flags of blacklists -->
+            <div id="blacklists">
+                <h3>Not fun jokes</h3>
+
+                <input type="checkbox" id="nfsw" name="nfsw" />
+                <label for="nfsw" class="flag">nfsw</label>
+
+                <input type="checkbox" id="religious" name="religious" />
+                <label for="religious" class="flag">religious</label>
+
+                <input type="checkbox" id="political" name="political" />
+                <label for="political" class="flag">political</label>
+
+                <input type="checkbox" id="racist" name="racist" />
+                <label for="racist" class="flag">racist</label>
+
+                <input type="checkbox" id="sexist" name="sexist" />
+                <label for="sexist" class="flag">sexist</label>
+
+                <input type="checkbox" id="explicit" name="explicit" />
+                <label for="explicit" class="flag">explicit</label>
+
+            </div>
+
+            <!-- Single or Twopart jokes -->
+            <div id="joke-type">
+                <h3>Type of joke(s)</h3>
+                <input type="checkbox" id="single" name="single" />
+                <label for="single" class="joke-type">Single part</label>
+
+                <input type="checkbox" id="twopart" name="twopart" />
+                <label for="twopart" class="joke-type">Two parts</label>
+
+            </div>
+
+            <!-- Search with string -->
+            <div id="search-with-string">
+                <h3>Search joke(s) with words</h3>
+                <input type="search" id="search-by-string" />
+            </div>
+
+            <!-- Search with id -->
+            <div id="search-with-id">
+                <h3>Search joke(s) with ID</h3>
+                <input type="number" id="search-by-id" />
+            </div>
+
+            <!-- Amount of jokes -->
+            <div id="amount-of-jokes">
+                <h3>Amount of joke(s)</h3>
+                <input type="number" id="amount-of-jokes-area" />
+            </div>
+
 
             <!-- Envoi de la requête -->
             <button type="submit">HAHAHAHA</button>
@@ -101,7 +132,7 @@
         </form>
 
         <!-- *****************  VIEW RESULTS  ****************** -->
-        <div class="result-container"></div>
+        <div id="result-container"></div>
     </div>
 </body>
 
