@@ -5,10 +5,22 @@ const categoriesChoicesElts = document.querySelectorAll('.categorie')
 const radioCategoriesElts = document.querySelectorAll('#radio-categories div')
 const blacklistFlags = document.querySelectorAll('.flag')
 const jokeTypes = document.querySelectorAll('.joke-type')
+const buttonElt = document.querySelector('button')
+const resultContainer = document.getElementById('result-container')
+const select = document.querySelector('select')
+
 
 // CONSTANTES ------------------------------------------------------------
 const jokeApiUrl = 'https://v2.jokeapi.dev/joke'
 const colorPalette = ['#ffbd64', '#fff151', '#052ce3', '#087dff', '#b0e0fa', 'grey']
+
+
+
+// VARIABLES ------------------------------------------------------------
+let promiseUrl = "https://v2.jokeapi.dev/joke/Any"
+let customs = []
+
+
 
 // FONCTIONS -------------------------------------------------------------
 
@@ -33,44 +45,96 @@ const changerStyleCheckboxes = (tableau) => {
     })
 }
 
+const getCustomUrl = (tableau) => {
+
+    tableau.forEach( element => {
+        if(element.control.checked) {
+            if(!(tableau.includes(`${element.outerText}`))) tableau.push(element)
+        }
+    })
+    console.log(customs.join(','))
+}
+
+const genererPromiseUrl = () => {
+    promiseUrl = jokeApiUrl + categorieUrl
+}
 
 // ================= DEBUT DU PROGRAMME =============================
 
 // INITIALISATION -------------------------------------------------
-categoriesChoicesElt.style.display = 'none'
-// Si la categorie "any" est checked alors #categories-choices disparait
-radioCategoriesElts.forEach(element => {
-    element.onchange = (e) => {
-        if (e.target.id === 'any') categoriesChoicesElt.style.display = 'none'
-        else categoriesChoicesElt.style.display = 'block'
-    }
-})
+
 // Affichage : suppression des cases à cocher des checkboxes
 checkboxes.forEach(checkbox => {
     checkbox.style.appearance = 'none'
 })
+categoriesChoicesElt.style.display = 'none'
+
+let customUrl = ""
+// Au changement de choix pour la categorie: si la categorie "any" est checked alors #categories-choices disparait
+radioCategoriesElts.forEach(element => {
+    categorieUrl = '/Any'
+    element.onchange = (e) => {
+        console.log(e)
+        if (e.target.id === 'any') {
+            categoriesChoicesElt.style.display = 'none'
+        } else if (e.target.id === 'custom') {
+            categoriesChoicesElt.style.display = 'flex'
+            categorieUrl = getCustomUrl(categoriesChoicesElts)
+        }
+    }
+})
+
 // Affichage : style des labels des inputs de type checkbox
 changerStyleCheckboxes(categoriesChoicesElts)
 changerStyleCheckboxes(blacklistFlags)
 changerStyleCheckboxes(jokeTypes)
 
-const resultContainer = document.getElementById('result-container')
-console.log(resultContainer)
+select.onchange = () => {
+    let languageUrl =  ""
+    switch(select.value) {
+        case 'cs':
+            languageUrl = 'lang=cs'
+            break;
+        case 'de':
+            languageUrl = 'lang=de'
+            break;
+        case 'en':
+            languageUrl = 'lang=en'
+            break;
+        case 'fr':
+            languageUrl = 'lang=fr'
+            break;
+        case 'es':
+            languageUrl = 'lang=es'
+            break;
+        case 'pt':
+            languageUrl = 'lang=pt'
+            break;
+        default:
+            ;
+    }
+}
 
-let promiseUrl = jokeApiUrl + "/Any"
-fetch(promiseUrl)
-    .then((response) => response.json())
-    .then((data) => {
-        if (data.type === "single") {
-            resultContainer.innerHTML = `<p>${data.joke}</p>`
-        }
-        else {
-            resultContainer.innerHTML = `<p>${data.setup}</p><br />`
-            setTimeout(() => {
-                resultContainer.innerHTML += `<p>${data.delivery}</p>`
-                resultContainer.appendChild(joke2)
-            }, 2500)
-            
-        }
-    })
-    .catch((error) => console.log("erreur dans le fetch :" + error))
+
+// Au click sur le bouton, envoie la demande de blague à l'API
+buttonElt.onclick = (e) => {
+    e.preventDefault()
+    let promiseUrl = genererPromiseUrl()
+    console.log(promiseUrl)
+    console.log(genererPromiseUrl())
+    fetch(promiseUrl)
+        .then((response) => response.json())
+        .then((data) => {
+            if (data.type === "single") {
+                resultContainer.innerHTML = `<p>${data.joke}</p>`
+            }
+            else {
+                resultContainer.innerHTML = `<p>${data.setup}</p><br />`
+                setTimeout(() => {
+                    resultContainer.innerHTML += `<p>${data.delivery}</p>`
+                }, 2500)
+
+            }
+        })
+        .catch((error) => console.log("erreur dans le fetch :" + error))
+}
