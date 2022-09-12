@@ -16,7 +16,11 @@
 
 <body>
     <div id="page-container">
-        <h2>WHAT WILL MAKE U LOF' ?</h2>
+        <!-- *****************  VIEW RESULTS  ****************** -->
+        <div id="result-container"></div>
+
+        <!-- Envoi de la requête -->
+        <button>MAKE ME LOF</button>
 
         <!-- *****************  FILTERS FORM  ****************** -->
         <form>
@@ -26,22 +30,18 @@
                 <h3>Category(ies)</h3>
 
                 <div id="radio-categories">
-                    <div>
-                        <input type="radio" name="categorie" id="any" value="Any" checked />
-                        <label for="any" class="radio-categorie">Any</label>
-                    </div>
+                    <input type="radio" name="categorie" id="any" value="Any" checked />
+                    <label for="any" class="radio-categorie">Any</label>
 
-                    <div>
-                        <input type="radio" name="categorie" id="custom" value="Custom" />
-                        <label for="custom" class="radio-categorie">Custom</label>
-                    </div>
+                    <input type="radio" name="categorie" id="custom" value="Custom" />
+                    <label for="custom" class="radio-categorie">Custom</label>
                 </div>
 
-                <div id="categories-choices">
+                <div id="categories">
                     <input type="checkbox" id="programming" value="Programming" />
                     <label for="programming" class="categorie">Programming</label>
 
-                    <input type="checkbox" id="misc" value="Misc" />
+                    <input type="checkbox" id="misc" value="Miscellaneous" />
                     <label for="misc" class="categorie">Misc</label>
 
                     <input type="checkbox" id="dark" value="Dark" />
@@ -126,13 +126,8 @@
             </div>
 
 
-            <!-- Envoi de la requête -->
-            <button>HAHAHAHA</button>
-
         </form>
 
-        <!-- *****************  VIEW RESULTS  ****************** -->
-        <div id="result-container"></div>
     </div>
 </body>
 

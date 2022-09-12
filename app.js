@@ -1,140 +1,82 @@
-// CONSTANTES - Elements --------------------------------------------------
-const checkboxes = document.querySelectorAll('input[type="checkbox"]')
-const categoriesChoicesElt = document.querySelector('#categories-choices')
-const categoriesChoicesElts = document.querySelectorAll('.categorie')
-const radioCategoriesElts = document.querySelectorAll('#radio-categories div')
-const blacklistFlags = document.querySelectorAll('.flag')
-const jokeTypes = document.querySelectorAll('.joke-type')
-const buttonElt = document.querySelector('button')
-const resultContainer = document.getElementById('result-container')
-const select = document.querySelector('select')
+const jokeApiURL = 'https://v2.jokeapi.dev/joke/'
+let categorieURL = ''
+let fetchURL = 'https://v2.jokeapi.dev/joke/Any'
 
-
-// CONSTANTES ------------------------------------------------------------
-const jokeApiUrl = 'https://v2.jokeapi.dev/joke'
 const colorPalette = ['#ffbd64', '#fff151', '#052ce3', '#087dff', '#b0e0fa', 'grey']
 
+const resultContainer = document.querySelector('#result-container')
+const buttonElt = document.querySelector('button')
+const categorieElts = document.querySelectorAll('.categorie')
 
-
-// VARIABLES ------------------------------------------------------------
-let promiseUrl = "https://v2.jokeapi.dev/joke/Any"
-let customs = []
-
-
-
-// FONCTIONS -------------------------------------------------------------
-
-// Modifier le style des elements d'un tableau d'inputs type checkbox => Distribuer des couleurs aux labels + dynamiser le style en fonction du "check"
+// Change le style des inputs de type checkbox
 const changerStyleCheckboxes = (tableau) => {
     tableau.forEach((element, index) => {
         // Distribue une couleur differente à chaque catégorie et l'enregistre dans l'élément
         let couleur = colorPalette[index]
         element.dataset.colorPalette = couleur
         element.style.borderColor = couleur
-
-        element.onclick = (e) => {
-            // Modification du style des labels lorsque check ou non
-            if (!(e.target.control.checked)) {
-                e.target.style.backgroundColor = e.target.dataset.colorPalette
-                e.target.style.color = 'white'
-            } else {
-                e.target.style.backgroundColor = 'white'
-                e.target.style.color = e.target.dataset.colorPalette
-            }
-        }
     })
 }
 
-const getCustomUrl = (tableau) => {
+// Met à jour le style des checkboxes ciblées
+const majStyleCheckbox = (e) => {
+    // Modification du style des labels lorsque check ou non
+    if (!(e.target.control.checked)) {
+        e.target.style.backgroundColor = e.target.dataset.colorPalette
+        e.target.style.color = 'white'
+    } else {
+        e.target.style.backgroundColor = 'white'
+        e.target.style.color = e.target.dataset.colorPalette
+    }
+}
 
-    tableau.forEach( element => {
-        if(element.control.checked) {
-            if(!(tableau.includes(`${element.outerText}`))) tableau.push(element)
-        }
+const handleCustomURL = (tableau) => {
+    categorieURL = ""
+    tableau.forEach( filtre => {
+        if (filtre.control.checked) categorieURL += filtre.control.value + ','
     })
-    console.log(customs.join(','))
+    categorieURL = categorieURL.slice(0,-1)
 }
 
-const genererPromiseUrl = () => {
-    promiseUrl = jokeApiUrl + categorieUrl
-}
-
-// ================= DEBUT DU PROGRAMME =============================
-
-// INITIALISATION -------------------------------------------------
-
-// Affichage : suppression des cases à cocher des checkboxes
-checkboxes.forEach(checkbox => {
-    checkbox.style.appearance = 'none'
-})
-categoriesChoicesElt.style.display = 'none'
-
-let customUrl = ""
-// Au changement de choix pour la categorie: si la categorie "any" est checked alors #categories-choices disparait
-radioCategoriesElts.forEach(element => {
-    categorieUrl = '/Any'
-    element.onchange = (e) => {
-        console.log(e)
-        if (e.target.id === 'any') {
-            categoriesChoicesElt.style.display = 'none'
-        } else if (e.target.id === 'custom') {
-            categoriesChoicesElt.style.display = 'flex'
-            categorieUrl = getCustomUrl(categoriesChoicesElts)
+const fetchData = (fetchURL) => {
+    fetch(fetchURL)
+    .then(response => response.json())
+    .then(data => {
+        resultContainer.innerHTML = ''
+        console.log(data)
+        if(data.type === 'single') {
+            resultContainer.textContent = data.joke
+        } else {
+            let div = document.createElement('div')
+            resultContainer.appendChild(div)
+            div.textContent = data.setup
+            setTimeout(() => {
+                let div2 = document.createElement('div')
+                div2.textContent = data.delivery
+                resultContainer.appendChild(div2)
+            }, 2000)
         }
-    }
-})
 
-// Affichage : style des labels des inputs de type checkbox
-changerStyleCheckboxes(categoriesChoicesElts)
-changerStyleCheckboxes(blacklistFlags)
-changerStyleCheckboxes(jokeTypes)
-
-select.onchange = () => {
-    let languageUrl =  ""
-    switch(select.value) {
-        case 'cs':
-            languageUrl = 'lang=cs'
-            break;
-        case 'de':
-            languageUrl = 'lang=de'
-            break;
-        case 'en':
-            languageUrl = 'lang=en'
-            break;
-        case 'fr':
-            languageUrl = 'lang=fr'
-            break;
-        case 'es':
-            languageUrl = 'lang=es'
-            break;
-        case 'pt':
-            languageUrl = 'lang=pt'
-            break;
-        default:
-            ;
-    }
+        
+    })
+    .catch(error => {throw error})
 }
 
+changerStyleCheckboxes(categorieElts)
 
-// Au click sur le bouton, envoie la demande de blague à l'API
+categorieElts.forEach(categorie => {
+    categorie.onclick = (e) => {
+        majStyleCheckbox(e)
+    }
+    categorie.control.checked = false
+})
+
 buttonElt.onclick = (e) => {
     e.preventDefault()
-    let promiseUrl = genererPromiseUrl()
-    console.log(promiseUrl)
-    console.log(genererPromiseUrl())
-    fetch(promiseUrl)
-        .then((response) => response.json())
-        .then((data) => {
-            if (data.type === "single") {
-                resultContainer.innerHTML = `<p>${data.joke}</p>`
-            }
-            else {
-                resultContainer.innerHTML = `<p>${data.setup}</p><br />`
-                setTimeout(() => {
-                    resultContainer.innerHTML += `<p>${data.delivery}</p>`
-                }, 2500)
-
-            }
-        })
-        .catch((error) => console.log("erreur dans le fetch :" + error))
+    handleCustomURL(categorieElts)
+    fetchURL = jokeApiURL + (categorieURL ? categorieURL : 'Any')
+    fetchData(fetchURL)
+    console.log(fetchURL)
 }
+
+

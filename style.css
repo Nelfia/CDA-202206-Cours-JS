@@ -9,14 +9,6 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
-h2 {
-    font-family: 'Montserrat', sans-serif;
-    letter-spacing: 2px;
-    font-size: 2rem;
-    text-align: center;
-    text-shadow: 1px 1px 5px black;
-}
-
 h3 {
     font-weight: 600;
     width: fit-content;
@@ -39,11 +31,21 @@ form{
 }
 
 button {
-    width: 15vw;
-    height: 15vw;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 2px;
+    font-size: 2rem;
+    text-align: center;
+    text-shadow: 1px 1px 5px black;
+    width: 25vw;
+    height: 25vw;
     border-radius: 50%;
     align-self: center;
     justify-self: center;
+    cursor: pointer;
+}
+
+input[type="checkbox"]{
+    appearance: none;
 }
 
 
@@ -56,6 +58,7 @@ button {
     display: flex;
     align-items: center;
     flex-direction: column;
+    justify-content: flex-end;
 }
 
 #categories-container {
@@ -94,5 +97,5 @@ button {
 
 #result-container {
     width: fit-content;
-    height: fit-content;
+    height: 20vh;
 }
