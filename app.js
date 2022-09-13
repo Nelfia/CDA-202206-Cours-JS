@@ -1,4 +1,5 @@
 let categorieURL = ''
+let languageURL = ''
 let fetchURL = 'https://v2.jokeapi.dev/joke/Any'
 
 const jokeApiURL = 'https://v2.jokeapi.dev/joke/'
@@ -6,9 +7,10 @@ const colorPalette = ['#ffbd64', '#fff151', '#052ce3', '#087dff', '#b0e0fa', 'gr
 
 const resultContainer = document.querySelector('#result-container')
 const buttonElt = document.querySelector('button')
+const languageElt = document.getElementById('language')
 const categorieElts = document.querySelectorAll('.categorie')
 
-// Change la couleur des bordures des inputs de type checkbox
+// Fonction qui change la couleur des bordures des inputs de type checkbox
 const colorCheckboxes = (tableau) => {
     tableau.forEach((element, index) => {
         let couleur = colorPalette[index]   // // Distribue une couleur differente à chaque catégorie
@@ -16,7 +18,7 @@ const colorCheckboxes = (tableau) => {
         element.style.borderColor = couleur //  l'applique sur la bordure
     })
 }
-// Met à jour le style des labels des checkboxes ciblées
+// Fonction qui met à jour le style des labels des checkboxes ciblées
 const majStyleCheckbox = (e) => {
     // Modification du style des labels lorsque check ou non
     if (!(e.target.control.checked)) { 
@@ -27,7 +29,7 @@ const majStyleCheckbox = (e) => {
         e.target.style.color = e.target.dataset.colorPalette
     }
 }
-// Retourne une URL à partir d'un tableau de labels de checkboxes
+// Fonction qui récupère et retourne les éléments checkés d'un tableau sous forme de string
 const handleCustomURL = (tableau) => {
     let url = ""
     tableau.forEach( filtre => {
@@ -35,7 +37,7 @@ const handleCustomURL = (tableau) => {
     })
     return url.slice(0,-1)
 }
-// Récupération de la data en fonction de fetchURL
+// Fonction qui récupère les données sur l'API
 const fetchData = (fetchURL) => {
     fetch(fetchURL)
     .then(response => response.json())
@@ -57,8 +59,15 @@ const fetchData = (fetchURL) => {
     })
     .catch(error => {throw error})
 }
-
-
+// Fonction qui génère l'URL de récupération des données
+const getFetchURL = () => {
+    let url = jokeApiURL
+    categorieURL = handleCustomURL(categorieElts)
+    url += (categorieURL || 'Any')
+    console.log(url)
+    languageElt.value ? url += `?lang=${languageElt.value}` : console.error('pas de langage Sélectionné')
+    return url
+}
 
 // ***********************  PROGRAMME  ***********************
 
@@ -73,11 +82,14 @@ categorieElts.forEach(categorie => {
     categorie.control.checked = false
 })
 
+languageElt.onchange = () => {
+    languageURL
+}
+
 // Génère une blague en fonction des filtres sélectionnés
 buttonElt.onclick = (e) => {
     e.preventDefault()
-    categorieURL = handleCustomURL(categorieElts)
-    fetchURL = jokeApiURL + (categorieURL ? categorieURL : 'Any')
+    fetchURL = getFetchURL()
     fetchData(fetchURL)
     console.log(fetchURL)
 }
