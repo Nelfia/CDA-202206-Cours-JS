@@ -6,7 +6,7 @@ const ul = document.querySelector('ul')
 let fetchURL;
 
 let barCodeList = [];
-// Récupération et affichage de la liste des codes-barre
+// Récupérer et afficher l'historique des codes-barre
 const majLS = () => {
     ul.innerHTML = ""
     barCodeList = []
@@ -66,19 +66,19 @@ const fetchData = () => {
         })
         .catch(error => { throw error })
 
-
+        input.value = ""
 
 }
 
 // ======================= DEBUT PROGRAMME ===================
 
-// Récupération et affichage des éléments du localStorage s'il y en a
+// Récupération et affichage des éléments du localStorage dans l'historique, s'il y en a.
 majLS()
-
+// Lorsqu'on appuie sur la touche entrée dans l'input
 input.onkeydown = (e) => {
-    if (e.key === "Enter") fetchData()
+    if (e.key === "Enter") button.click()
 }
-
+// Lorsqu'on appuie sur le bouton
 button.onclick = () => {
     fetchData()
 }
