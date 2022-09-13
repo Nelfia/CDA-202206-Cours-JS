@@ -29,10 +29,6 @@ const fetchData = () => {
     if (!input.value) throw 'input vide'
     article.innerHTML = ""
     fetchURL = `https://world.openfoodfacts.org/api/v0/product/${input.value}.json`
-    barCodeList.push(input.value)
-    localStorage.setItem("barCodeList", JSON.stringify(barCodeList))
-    barCodeList.innerHTML = ""
-    majLS()
 
     fetch(fetchURL)
         .then(response => response.json())
@@ -40,7 +36,7 @@ const fetchData = () => {
             data = data
             console.log(data)
             let h2 = document.createElement('h2')
-            h2.innerHTML = data.product.product_name_fr
+            h2.innerHTML = data.product.product_name_fr 
             article.appendChild(h2)
             let div = document.createElement('div')
             div.classList.add('images')
@@ -50,22 +46,26 @@ const fetchData = () => {
             div.appendChild(img)
             let ul = document.createElement('ul')
             ul.innerHTML = `
-            <li><h3>Allergènes :</h3> ${data.product.allergens_imported}</li>
-            <li><h3>Nutri-score :</h3> ${data.product.nutriscore_score}</li>
+            <li><h3>Allergènes :</h3> ${data.product.allergens_imported || 'Inconnu'}</li>
+            <li><h3>Nutri-score :</h3> ${data.product.nutriscore_score || 'Inconnu'}</li>
             <li><h3>Macro-nutriments :</h3> 
                 <ul>
-                    <li><h4>Glucides :</h4> ${data.product.nutriments.carbohydrates}g pour 100g</li>
-                    <li><h4>Lipides :</h4> ${data.product.nutriments.fat}</li>
-                    <li><h4>Protéines :</h4> ${data.product.nutriments.proteins}</li>
+                    <li><h4>Glucides :</h4> ${data.product.nutriments.carbohydrates || 'Inconnu'}g pour 100g</li>
+                    <li><h4>Lipides :</h4> ${data.product.nutriments.fat || 'Inconnu'}</li>
+                    <li><h4>Protéines :</h4> ${data.product.nutriments.proteins || 'Inconnu'}</li>
                 </ul>
             </li>
             <li><h3>kcal :</h3> ${data.product.nutriments['energy-kcal']}</li>
-            <li><h3>Ingrédients :</h3> ${data.product.ingredients_text_fr}</li>
+            <li><h3>Ingrédients :</h3> ${data.product.ingredients_text_fr || 'Inconnu'}</li>
         `
             article.appendChild(ul)
         })
         .catch(error => { throw error })
 
+        barCodeList.push(input.value)
+        localStorage.setItem("barCodeList", JSON.stringify(barCodeList))
+        barCodeList.innerHTML = ""
+        majLS()
         input.value = ""
 
 }
