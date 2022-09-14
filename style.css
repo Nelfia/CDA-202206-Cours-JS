@@ -1,3 +1,70 @@
-*{
- margin = 10px; 
+* {
+    font-family: 'Poppins', sans-serif;;
+}
+
+body {
+    width: 80vw;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    margin-top: 20px;
+    gap: 30px;
+}
+
+aside {
+    overflow: scroll;
+    height: 50vh;
+}
+
+h2 {
+    align-self: center;
+}
+
+#change-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#monnaie {
+    background-image: url('https://us.123rf.com/450wm/tassel78/tassel781205/tassel78120500014/13761816-illustration-pi%C3%A8ce-d-or-isol%C3%A9-sur-fond-blanc.jpg?ver=6');
+    background-color: white;
+    width: 250px;
+    height: 250px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    font-size: 2rem;
+    display: flex;
+    text-shadow: -1px 2px 3px #8a5100;
+    color: #fff597;
+    justify-content: center;
+    align-items: center;
+}
+
+#egal {
+    background-image: url('https://us.123rf.com/450wm/piren/piren1703/piren170301502/74445408-le-signe-%C3%A9gal-sur-un-fond-blanc-.jpg');
+    background-color: white;
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 100px;
+    height: 100px;
+    font-size: 2.5em;
+}
+
+#prix {
+    width: 250px;
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2em;
+}
+
+#coins img {
+    height: 150px;
+    width: 150px;
+    object-fit: contain;
 }

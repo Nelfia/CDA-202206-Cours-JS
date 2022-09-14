@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>JS - Evaluation</title>
+</head>
+
+
+<body>
+    <div>
+        <label for="crypto-choice">Quelle crypto monnaie souhaitez-vous convertir en Euro : </label>
+        <input list="cryptos-monnaies-list" id="crypto-choice" name="crypto-choice" />
+        <datalist id="cryptos-monnaies-list"></datalist>
+    </div>
+
+    <div id="change-container">
+        <div id="monnaie"></div>
+        <div id="egal"></div>
+        <div id="prix"></div>
+        <div id="coins"><img src="./img/coin-g6c1e8b4f3_1920.png" alt=""></div>
+    </div>
+
+    <aside>
+        <ul id="historique"></ul>
+    </aside>
+</body>
+
+<script src="app.js"></script>
+
+</html>
