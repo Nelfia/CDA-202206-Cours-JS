@@ -3,6 +3,10 @@
 }
 
 body {
+
+}
+
+.container {
     width: 80vw;
     height: fit-content;
     display: flex;
@@ -14,13 +18,32 @@ body {
     gap: 30px;
 }
 
+img {
+    height: 150px;
+    object-fit: contain;
+}
+
 aside {
-    overflow: scroll;
-    height: 50vh;
+    max-height: 50vh;
+    overflow-y: scroll;
 }
 
 h2 {
     align-self: center;
+}
+
+#crypto-choices {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.5rem;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+#crypto-choice {
+    border-radius: 8px;
+    width: 20vw;
 }
 
 #change-container {
@@ -32,20 +55,27 @@ h2 {
 #monnaie {
     background-image: url('https://us.123rf.com/450wm/tassel78/tassel781205/tassel78120500014/13761816-illustration-pi%C3%A8ce-d-or-isol%C3%A9-sur-fond-blanc.jpg?ver=6');
     background-color: white;
-    width: 250px;
-    height: 250px;
+    width: 200px;
+    height: 200px;
     background-size: contain;
     background-repeat: no-repeat;
-    font-size: 2rem;
+    font-family: 'Lato', sans-serif;  ;
+    font-size: 2.2em;
     display: flex;
     text-shadow: -1px 2px 3px #8a5100;
     color: #fff597;
     justify-content: center;
     align-items: center;
+    text-align: center;
+    padding-bottom: 5px;
+}
+
+#monnaie::first-letter {
+    font-size: 5rem;
 }
 
 #egal {
-    background-image: url('https://us.123rf.com/450wm/piren/piren1703/piren170301502/74445408-le-signe-%C3%A9gal-sur-un-fond-blanc-.jpg');
+    background-image: url('./img/icons8-signe-égal-96.png');
     background-color: white;
     background-size: contain;
     background-repeat: no-repeat;
@@ -63,8 +93,3 @@ h2 {
     font-size: 2em;
 }
 
-#coins img {
-    height: 150px;
-    width: 150px;
-    object-fit: contain;
-}

@@ -55,7 +55,7 @@ const fetchData = () => {
                     selectedChoice = cryptoMonnaies[index]
                 }
             })
-            monnaie.textContent = `1 ${selectedChoice.name}`
+            monnaie.innerHTML = `1 <br/> ${selectedChoice.name}`
 
             if (!selectedChoice.amount) {
                 prixElt.textContent = `${(parseFloat(data.data.amount).toFixed(2))}€`
@@ -82,18 +82,19 @@ cryptoChoiceElt.onchange = (e) => {
     historiqueElt.textContent = ''
     getFetchURL()
     if (selectedChoice) {
+        changeContainer.style.opacity = "1"
         clearInterval(intervalId)
         intervalId = setInterval(() => {
             fetchData()
         }, 1000)
     }
 }
-
+//  Vérifie si l'évolution de la devise 
 const getEvolutionInfos = () => {
-    let sup = document.createElement('sup')
     if (!prixPrecedent) throw 'Pas de prix précédent à comparer'
-    prixElt.textContent = `${currentPrice}€`
 
+    let sup = document.createElement('sup')
+    prixElt.textContent = `${currentPrice}€`
     if (prixPrecedent > currentPrice) {
         sup.textContent = '▼'
         prixElt.style.color = 'red'
@@ -101,9 +102,7 @@ const getEvolutionInfos = () => {
         sup.textContent = '▲'
         prixElt.style.color = 'green'
     } else if (prixPrecedent === currentPrice) {
-        console.log('prixPrecedent === currentPrice ')
         sup.textContent = '►'
-
         prixElt.style.color = 'blue'
     } else throw 'Problème dans getEvolutionInfos'
     prixElt.appendChild(sup)
