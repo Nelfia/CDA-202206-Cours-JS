@@ -3,6 +3,7 @@ const cryptoMonnaiesListElt = document.querySelector('#cryptos-monnaies-list')
 const cryptoChoiceElt = document.querySelector('#crypto-choice')
 const historiqueElt = document.querySelector('#historique')
 const prixElt = document.querySelector('#prix')
+const coinName = document.querySelector('#coin-name')
 
 const cryptoMonnaies = [
     {
@@ -109,11 +110,11 @@ const getEvolutionInfos = () => {
 }
 
 const afficherHistorique = (prixElt) => {
-    const li = document.createElement('li')
+    const td = document.createElement('td')
     if (selectedChoice.amount !== prixPrecedent) {
-        if (prixElt.textContent.includes('▲')) li.style.color = 'green'
-        else if (prixElt.textContent.includes('▼')) li.style.color = 'red'
-        li.textContent = `1${selectedChoice.name} = ${prixElt.textContent}`
-        historiqueElt.appendChild(li)
+        if (prixElt.textContent.includes('▲')) td.style.color = 'green'
+        else if (prixElt.textContent.includes('▼')) td.style.color = 'red'
+        td.textContent = `${prixElt.textContent}`
+        historiqueElt.appendChild(td)
     }
 }

@@ -2,10 +2,6 @@
     font-family: 'Poppins', sans-serif;;
 }
 
-body {
-
-}
-
 .container {
     width: 80vw;
     height: fit-content;
@@ -23,9 +19,9 @@ img {
     object-fit: contain;
 }
 
-aside {
+table {
     max-height: 50vh;
-    overflow-y: scroll;
+    overflow-x: scroll;
 }
 
 h2 {
