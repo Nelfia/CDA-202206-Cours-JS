@@ -18,9 +18,8 @@ const colorCheckboxes = (tableau) => {
         element.style.borderColor = couleur //  l'applique sur la bordure
     })
 }
-// Fonction qui met à jour le style des labels des checkboxes ciblées
+// Fonction qui modifie le style des labels lorsque check ou non
 const majStyleCheckbox = (e) => {
-    // Modification du style des labels lorsque check ou non
     if (!(e.target.control.checked)) { 
         e.target.style.backgroundColor = e.target.dataset.colorPalette
         e.target.style.color = 'white'
@@ -29,6 +28,7 @@ const majStyleCheckbox = (e) => {
         e.target.style.color = e.target.dataset.colorPalette
     }
 }
+
 // Fonction qui récupère et retourne les éléments checkés d'un tableau sous forme de string
 const handleCustomURL = (tableau) => {
     let url = ""
